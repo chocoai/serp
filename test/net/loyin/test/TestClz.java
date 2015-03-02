@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 public class TestClz {
 
 	public static void main(String[] args) {
+		String test = "ff";
 		String s=null,s1="";
 		System.out.println(
 				StringUtils.isNoneEmpty(s)+
