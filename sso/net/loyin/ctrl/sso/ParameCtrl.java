@@ -49,19 +49,16 @@ public class ParameCtrl extends AdminBaseController<Parame> {
 	public void list(){
 		List<Record>list=Parame.dao.qryList(this.getCompanyId(),this.getParaToInt("type"));
 		Map<String,Object>data=new HashMap<String,Object>();
-//		List<Record> allList=new ArrayList<Record>();//所有参数列表
 		List<List<Record>> typeList=new ArrayList<List<Record>>();//按类别列表
 		for(int i=0;i<999;i++){
 			typeList.add(new ArrayList<Record>());
 		}
 		if(list!=null&&list.isEmpty()==false){
 			for(Record r:list){
-//				allList.add(r);
 				data.put(r.getStr("id"), r);
 				int type=r.getInt("type");
 				typeList.get(type).add(r);
 			}
-//			data.put("list",allList);
 			data.put("typeList",typeList);
 		}
 		this.rendJson(data);

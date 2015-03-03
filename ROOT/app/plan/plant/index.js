@@ -1,5 +1,5 @@
-var url=rootPath+"/plan/plant",gridQryUrl=url+"/dataGrid.json",custParame=SYSTEM.custParame,typeList=custParame.typeList,
-order_type=["采购订单","采购退货单","销售订单","销售退货单","报价"],audit_status=["未提交","待审核","通过","拒绝"],order_name=order_type[type],
+var url=rootPath+"/plan/plant",gridQryUrl=url+"/dataGrid.json",custParame=SYSTEM.custParame,typeList=custParame.typeList;
+var order_type=["种植计划","采购退货单","销售订单","销售退货单","报价"],audit_status=["未提交","待审核","通过","拒绝"],order_name=order_type[type],
 audit_hidden=(type<=1||((type==2&&SYSTEM.company.config.p_sale_audit=="false")||(type==3&&SYSTEM.company.config.p_saletui_audit=="false")));
 var model = avalon.define({$id:'view',
 	query:{keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate,status:"",ordertype:type,is_deleted:0,qryType:5,pay_status:""},
@@ -303,7 +303,7 @@ var model = avalon.define({$id:'view',
 			else
 				var i = "修改"+order_type[type], r = {oper:e,id:t};
 			$.dialog({title:i,content:"url:"+url+"/edit.html",
-				data:r,width:900,height :700,max :true,resize:true,	min :false,	cache :false,lock :true
+				data:r,width:900,height:600,max :true,resize:true,	min :false,	cache :false,lock :true
 			})
 	},
 	view:function(id){
