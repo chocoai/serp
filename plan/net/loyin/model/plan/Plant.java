@@ -71,7 +71,7 @@ public class Plant extends Model<Plant> {
 			sql.append(" ");
 			sql.append(sort);
 		}
-		return this.paginate(pageNo, pageSize, "select t.*,p.realname as username,p.mobile as mobile ",sql.toString(),parame.toArray());
+		return this.paginate(pageNo, pageSize, "select t.*,p.realname as head_name,p.mobile as mobile ",sql.toString(),parame.toArray());
 	}
 	
 	/**
