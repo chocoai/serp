@@ -73,6 +73,10 @@ color: #d2160b; border-radius: 14px; font-weight: normal; }
 #nav .kh { background-position: -695px 0; }
 #nav .on .kh { background-position: -695px -80px; }
 #nav .current .kh { background-position: -695px -160px; }
+/*采购*/
+#nav .cg { background-position: 0px 0; }
+#nav .on .cg { background-position: 0px -80px; }
+#nav .current .cg { background-position: 0px -160px; }
 /*销售*/
 #nav .xs { background-position: -100px 0; }
 #nav .on .xs { background-position: -100px -80px; }
@@ -81,18 +85,6 @@ color: #d2160b; border-radius: 14px; font-weight: normal; }
 #nav .ck { background-position: -195px 0; }
 #nav .on .ck { background-position: -195px -80px; }
 #nav .current .ck { background-position: -195px -160px; }
-/*采购*/
-#nav .cg { background-position: 0px 0; }
-#nav .on .cg { background-position: 0px -80px; }
-#nav .current .cg { background-position: 0px -160px; }
-/*办公*/
-#nav .BG { background-position: -810px 0; }
-#nav .on .BG { background-position: -810px -80px; }
-#nav .current .BG { background-position: -810px -160px; }
-/*人力资源*/
-#nav .RL { background-position: -930px 0; }
-#nav .on .RL { background-position: -930px -80px; }
-#nav .current .RL { background-position: -930px -160px; }
 /*财务*/
 #nav .CW { background-position: -290px 0; }
 #nav .on .CW { background-position: -290px -80px; }
@@ -101,14 +93,30 @@ color: #d2160b; border-radius: 14px; font-weight: normal; }
 #nav .BB{ background-position: -390px 0; }
 #nav .on .BB{ background-position: -390px -80px; }
 #nav .current .BB { background-position: -390px -160px; }
+
 /*企业云*/
 #nav .yun{ background-position: -585px 0; }
 #nav .on .yun{ background-position: -585px -80px; }
 #nav .current .yun { background-position: -585px -160px; }
+/*办公*/
+#nav .BG { background-position: -810px 0; }
+#nav .on .BG { background-position: -810px -80px; }
+#nav .current .BG { background-position: -810px -160px; }
+/*人力资源*/
+#nav .RL { background-position: -930px 0; }
+#nav .on .RL { background-position: -930px -80px; }
+#nav .current .RL { background-position: -930px -160px; }
+
+
 /*报表*/
 #nav .GL{ background-position: -1075px 0; }
 #nav .on .GL{ background-position: -1075px -80px; }
 #nav .current .GL { background-position: -1075px -160px; }
+
+/*计划*/
+#nav .PL{ background-position: -1178px 0; }
+#nav .on .PL{ background-position: -1178px -80px; }
+#nav .current .PL { background-position: -1178px -160px; }
 
 #col-side .side-fold { font-size: 16px; color: #b8d2e1; height: 45px; background-position: -588px 0; border-top: 1px solid #5595b8; border-color: rgba(255,255,255,0.2); }
 /*col_main*/

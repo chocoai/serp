@@ -1,11 +1,10 @@
 var api = frameElement.api,oper = api.data.oper,id=api.data.id,$_form=$("#base_form");
 
 var custParame=SYSTEM.custParame,typeList=custParame.typeList,url=rootPath+"/plan/plant";
-
 var model = avalon.define({$id:'view',
 	data:{name:"",variety:"",area:"",plant_region:"",spawning_time:"",seeding_time:"",growing_time:"",ripe_time:"",harvest_time:"",fertilizer:"",pestisaid:"",head_id:"",company_id:"",company_name:"",id:""},
     parameList:typeList,
-    employeeList:[],
+    userList:[],
     custComboV:false,
     init:function(){},
     choosEmployee:function(e){ ///选择负责人
@@ -15,25 +14,16 @@ var model = avalon.define({$id:'view',
     setCompany:function(e){
     	model.data.company_id=e.id;
     },
-   
-    qryEmployee:function(v){//自动完成查询企业员工
-    	model.custComboV=true;
-    	Public.ajaxPost(rootPath+"/crm/customer/dataGrid.json",{keyword:v},function(json){
-    		model.employeeList=json.data.list;
+    qryHead:function(v){
+    	Public.ajaxPost(rootPath+"/sso/user/dataGrid.json",{keyword:v,status:1,_sortField:"realname",rows:9999,_sort:"asc",rows:9999},function(json){
+    		model.userList=json.data.list;
     	});
     }
 });
-avalon.filters.type=function(v){
-	var sex=["供应商","客户","客户"];
-	return sex[v];
-}
-model.data.$watch("$all",function(name,a,b){
-	if(a==null||a=="null"){
-		model.data[name]="";
-	}
-});
+
 var THISPAGE = {
 	init : function() {
+		model.qryHead();
 		this.initDom();
 		this.initBtn();
 	},
@@ -98,14 +88,14 @@ var THISPAGE = {
 	}
 };
 function postData(){
-	var e = "add" == oper ? "新增联系人" : "修改联系人";
+	var e = "add" == oper ? "新增种植计划" : "修改种植计划";
 	Public.ajaxPost(url+"/save.json",model.data.$model, function(json) {
 		if (200 == json.status) {
 			parent.parent.Public.tips({
 				content : e + "成功！"
 			});
 			model.data.id=json.data.id;
-			parent.THISPAGE.reloadData(null);
+			parent.model.reloadData(null);
 		} else
 			parent.parent.Public.tips({
 				type : 1,

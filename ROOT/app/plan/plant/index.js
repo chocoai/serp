@@ -12,9 +12,6 @@ var model = avalon.define({$id:'view',
 		       {text:"下属负责的",sl:false},
 		       {text:"回收站",sl:false},
 		       {text:"",sl:true},
-		       {text:"未支付",sl:false},
-		       {text:"已支付",sl:false},
-		       {text:"已结算",sl:false}
 		       ],
 	qry:function(type){
 		model.query.qryType=type;
@@ -47,27 +44,8 @@ var model = avalon.define({$id:'view',
 	loadGrid:function() {
 				function t(val, opt, row) {
 					var html_con = '<div class="operating" data-id="'+ row.id+'"><span class="fa fa-eye mrb" title="查看"></span>';
-					if (row.is_deleted == 0) {
-						if((row.audit_status==0||row.audit_status==3)&&(SYSTEM.user.id==row.head_id||SYSTEM.user.id==row.creater_id)){//未提交审核或审核不通过
-							html_con+='<span class="fa fa-edit mrb" title="修改"></span><span class="fa fa-trash-o mrb" title="删除"></span>';
-						}
-						if (type<=1||audit_hidden){//销售订单 销售退货单
-							if(row.audit_status==0&&(SYSTEM.user.id==row.head_id||SYSTEM.user.id==row.creater_id)){
-								html_con+='<span class="submit mrb" title="提交">提交</span>';
-							}
-						}
-						if (type > 1&&audit_hidden==false){//销售订单 销售退货单
-							if (row.audit_status ==0&&(row.creater_id==SYSTEM.user.id||row.head_id==SYSTEM.user.id)){//未提交审核
-								html_con+='<a href="#" class="fa mrb subAudit" title="提交审核">提交审核</a>';
-							}else if (row.audit_status ==1&&(row.creater_id==SYSTEM.user.id||row.head_id==SYSTEM.user.id)){//取消提交审核
-								html_con+='<a href="#" class="fa mrb disSubAudit" title="取消审核">取消审核</a>';
-							}else if (row.audit_status ==1&&row.auditor_id==SYSTEM.user.id){
-								html_con+='<a href="#" class="fa mrb audit" title="审核">审核</a>';
-							}
-						}
-					}
-					if (row.is_deleted == 1)
-						html_con+='<span class="fa fa-reply mrb" title="恢复"></span><span class="fa fa-trash-o mrb del" title="删除"></span>';
+						html_con+='<span class="fa fa-edit mrb" title="修改"></span>';
+						html_con+='<span class="fa fa-trash-o mrb del" title="删除"></span>';
 					html_con+='</div>';
 					return html_con;
 				}
@@ -80,7 +58,8 @@ var model = avalon.define({$id:'view',
 			autowidth:true,
 			height:i.h,
 			altRows:true,
-			gridview:true,rownumbers:true,
+			gridview:true,
+			rownumbers:true,
 			multiselect:true,
 			multiboxonly:true,
 			colModel:[ {
@@ -177,8 +156,8 @@ var model = avalon.define({$id:'view',
 			sortname:"create_datetime",
 			sortorder:"desc",
 			pager:"#page",
-			rowNum:50,
-			rowList:[ 50,100, 200 ],
+			rowNum:10,
+			rowList:[ 10,100, 200 ],
 			viewrecords:true,
 			shrinkToFit:false,
 			forceFit:false,
@@ -214,11 +193,7 @@ var model = avalon.define({$id:'view',
 			var e = $(this).parent().data("id");
 			model.view(e);
 		});
-		$(".grid-wrap").on("click", ".audit", function(t) {
-			t.preventDefault();
-			var e = $(this).parent().data("id");
-			model.audit(e);
-		});
+		
 		$(".grid-wrap").on("click", ".fa-edit", function(e) {
 			e.preventDefault();
 			if (Business.verifyRight("TD_UPDATE")) {
@@ -226,20 +201,7 @@ var model = avalon.define({$id:'view',
 				model.operate("edit", t)
 			}
 		});
-		$(".grid-wrap").on("click", ".subAudit", function(e) {
-			e.preventDefault();
-			if (Business.verifyRight("TD_UPDATE")) {
-				var t = $(this).parent().data("id");
-				model.subAudit(t)
-			}
-		});
-		$(".grid-wrap").on("click", ".disSubAudit", function(e) {
-			e.preventDefault();
-			if (Business.verifyRight("TD_UPDATE")) {
-				var t = $(this).parent().data("id");
-				model.disSubAudit(t)
-			}
-		});
+		
 		$(".grid-wrap").on("click", ".fa-trash-o", function(t) {
 			t.preventDefault();
 			if (Business.verifyRight("BU_DELETE")) {
@@ -302,19 +264,15 @@ var model = avalon.define({$id:'view',
 				var i = "新增"+order_type[type], r = {oper:e};
 			else
 				var i = "修改"+order_type[type], r = {oper:e,id:t};
+			
 			$.dialog({title:i,content:"url:"+url+"/edit.html",
-				data:r,width:900,height:600,max :true,resize:true,	min :false,	cache :false,lock :true
+				data:r,width:900,height:280,max:true,resize:true,min :false,cache :false,lock :true
 			})
 	},
 	view:function(id){
 		$.dialog({id:"dialog1",width:900,height :700,min:true,max:true,
 			title:"查看"+order_type[type],button:[{name:"关闭"	} ],resize:true,lock:true,
 			content:"url:"+url+"/view.html",data:{id:id,type:type}});
-	},
-	audit:function(id){
-		$.dialog({id:"dialog1",width:900,height :700,min:true,max:true,
-			title:"审核"+order_type[type],resize:true,lock:true,
-			content:"url:"+url+"/audit.html",data:{id:id,type:type}});
 	},
 	reply:function(e) {
 			Public.ajaxPost(url + "/reply.json", {id:e}, function(t) {
@@ -358,28 +316,6 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:1,content:"提交"+order_type[type]+"失败！" + t.msg});
 				}
 			})
-		});
-	},
-	subAudit:function(id) {
-			Public.ajaxPost(url+"/subAudit.json", {id:id}, function(t) {
-				if (t && 200 == t.status) {
-					parent.Public.tips({type:2,content:t.msg});
-					model.reloadData();
-				} else{
-					parent.Public.tips({type:1,content:"提交"+order_type[type]+"审核失败！" + t.msg});
-				}
-		});
-	},
-	disSubAudit:function(id) {
-		$.dialog.confirm("确定取消"+order_name+"的审核？", function() {
-		Public.ajaxPost(url+"/subAudit.json", {id:id,status:0}, function(t) {
-			if (t && 200 == t.status) {
-				parent.Public.tips({type:2,content:t.msg});
-				model.reloadData();
-			} else{
-				parent.Public.tips({type:1,content:"取消"+order_type[type]+"审核失败！" + t.msg});
-			}
-		});
 		});
 	}
 });

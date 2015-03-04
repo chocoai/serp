@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.loyin.ctrl.base.AdminBaseController;
+import net.loyin.jfinal.anatation.PowerBind;
 import net.loyin.jfinal.anatation.RouteBind;
 import net.loyin.model.plan.Plant;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author xiangning
@@ -35,5 +38,42 @@ public class PlantCtrl extends AdminBaseController<Plant> {
 		filter.put("position_id",userMap.get("position_id"));
 		this.sortField(filter);
 		this.rendJson(true, null, "",Plant.dao.pageGrid(this.getPageNo(),this.getPageSize(),filter));
+	}
+	
+	@PowerBind(code="A1_1_E",funcName="编辑")
+	public void save() {
+		try {
+			Plant po = (Plant) getModel();
+			if (po == null) {
+				this.rendJson(false,null, "提交数据错误！");
+				return;
+			}
+			getId();
+			String uid=this.getCurrentUserId();
+			this.pullUser(po, uid);
+			if (StringUtils.isEmpty(id)) {
+				po.set("company_id", this.getCompanyId());
+				po.save();
+				id=po.getStr("id");
+			} else {
+				po.update();
+			}
+			this.rendJson(true,null, "操作成功！",id);
+		} catch (Exception e) {
+			log.error("保存产品异常", e);
+			this.rendJson(false,null, "保存数据异常！");
+		}
+	}
+	
+	@PowerBind(code={"A2_1_E","A3_1_E"},funcName="删除")
+	public void del() {
+		try {
+			getId();
+			Plant.dao.del(id,this.getCompanyId());
+			rendJson(true,null,"删除成功！",id);
+		} catch (Exception e) {
+			log.error("删除异常", e);
+			rendJson(false,null,"删除失败！",id);
+		}
 	}
 }
