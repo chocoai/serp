@@ -1,0 +1,53 @@
+<#include "../../inc/layout.html">
+<@layout title="种植计划" js="plan/plant/view.js">
+<style>
+body{background:#fff;display:block;}
+</style>
+<div class="manage-wrapper" ms-controller="view">
+   <div class="manage-wrap">
+    		<ul class="mod-form-rows base-form" >
+    			<li class="row-itemoneRow oneRow">
+    				<div class="label-wrap"><label>生产资料名：</label></div>
+    				<div class="ctn-wrap">{{data.name}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>生产资料类型：</label></div>
+    				<div class="ctn-wrap">{{data.variety}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>数量：</label></div>
+    				<div class="ctn-wrap">{{data.number}}
+    				</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>单位：</label></div>
+    				<div class="ctn-wrap">
+    				{{data.unit}}
+    				</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>预计投入：</label></div>
+    				<div class="ctn-wrap">{{data.input}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>采购时间：</label></div>
+    				<div class="ctn-wrap">{{data.buy_time}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>厂商名：</label></div>
+    				<div class="ctn-wrap">{{data.buy_company_name}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>负责人：</label></div>
+    				<div class="ctn-wrap">{{data.username}}</div>
+    			</li>
+    			
+    			<li class="row-item">
+    				<div class="label-wrap"><label>负责人电话：</label></div>
+    				<div class="ctn-wrap">{{data.mobile}}
+    				</div>
+    			</li>
+    		</ul>
+    </div>
+</div>
+</@layout>

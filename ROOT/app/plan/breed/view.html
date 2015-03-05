@@ -1,0 +1,58 @@
+<#include "../../inc/layout.html">
+<@layout title="种植计划" js="plan/breed/view.js">
+<style>
+body{background:#fff;display:block;}
+</style>
+<div class="manage-wrapper" ms-controller="view">
+   <div class="manage-wrap">
+    		<ul class="mod-form-rows base-form" >
+    			<li class="row-itemoneRow oneRow">
+    				<div class="label-wrap"><label>名称：</label></div>
+    				<div class="ctn-wrap">{{data.name}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>品类：</label></div>
+    				<div class="ctn-wrap">{{data.variety}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>养殖数量：</label></div>
+    				<div class="ctn-wrap">{{data.number}}
+    				</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>养殖区域：</label></div>
+    				<div class="ctn-wrap">
+    				{{data.breed_region}}
+    				</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>饲料投入：</label></div>
+    				<div class="ctn-wrap">{{data.feed}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>防疫投入：</label></div>
+    				<div class="ctn-wrap">{{data.anti_epidemic}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>出栏数量：</label></div>
+    				<div class="ctn-wrap">{{data.ripe_number}}</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>出栏时间：</label></div>
+    				<div class="ctn-wrap">{{data.ripe_time}}</div>
+    			</li>
+    			
+    			<li class="row-item">
+    				<div class="label-wrap"><label>负责人：</label></div>
+    				<div class="ctn-wrap">{{data.username}}
+    				</div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label>负责人电话：</label></div>
+    				<div class="ctn-wrap">{{data.mobile}}
+    				</div>
+    			</li>
+    		</ul>
+    </div>
+</div>
+</@layout>
