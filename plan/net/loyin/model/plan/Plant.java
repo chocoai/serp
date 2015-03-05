@@ -58,11 +58,24 @@ public class Plant extends Model<Plant> {
 			parame.add(keyword);
 			parame.add(keyword);
 		}
+		
 		String company_id=(String)filter.get("company_id");
 		if(StringUtils.isNotEmpty(company_id)){
 			sql.append(" and t.company_id=? ");
 			parame.add(company_id);
 		}
+		
+		String start_date=(String) filter.get("start_date");
+		if(StringUtils.isNotEmpty(start_date)){
+			sql.append(" and t.create_datetime >= ?");
+			parame.add(start_date+" 00:00:00");
+		}
+		String end_date=(String) filter.get("end_date");
+		if(StringUtils.isNotEmpty(end_date)){
+			sql.append(" and t.create_datetime <= ?");
+			parame.add(end_date+" 23:59:59");
+		}
+		
 		String sortField=(String)filter.get("_sortField");
 		if(StringUtils.isNotEmpty(sortField)){
 			String sort=(String)filter.get("_sort");

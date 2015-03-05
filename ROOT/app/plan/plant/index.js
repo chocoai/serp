@@ -4,18 +4,13 @@ var model = avalon.define({$id:'view',
 	query:{keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate},
 	parameList:typeList,
 	fastQryText:"快速查询",
-	fastQry:[
-		       {text:"我创建的",sl:false},
-		       {text:"我负责的",sl:false},
-		       {text:"下属创建的",sl:false},
-		    ],
 	init:function() {
 		$(".ui-datepicker-input").datepicker();
 		this.loadGrid();
 		this.addEvent()
 	},
 	resetQry:function(){
-		model.query={keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate,status:"",ordertype:type};
+		model.query={keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate};
 		model.reloadData();
 	},
 	loadGrid:function() {

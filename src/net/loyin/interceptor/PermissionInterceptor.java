@@ -37,12 +37,10 @@ public class PermissionInterceptor extends BaseInterceptor {
 		if (p == null) {
 			ai.invoke();
 		} else if (power_check) {
-			boolean v = false;
-			String[] code = null;
-			v = p.v();
-			code = p.code();
+			boolean v = p.v();
+			String[] code = p.code();
 			boolean f = false;
-			if (v == true) {
+			if (v) {
 				// 菜单权限判断
 				String powerCodeList = (String) CacheKit.get("oneday", "power_"	+ ctrl.getPositionId());
 				if (StringUtils.isEmpty(powerCodeList)) {

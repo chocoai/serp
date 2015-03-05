@@ -47,7 +47,8 @@ var THISPAGE = {
 			max : true,
 			title : "查看线索",
 			button : [{name : "关闭"	} ],
-			resize : true,lock:true,
+			resize : true,
+			lock:true,
 			content : "url:"+url+"/view.html",
 			data : {id:id}
 		});
@@ -69,7 +70,8 @@ var THISPAGE = {
 			autowidth : true,
 			height : i.h,
 			altRows : true,
-			gridview : true,rownumbers:true,
+			gridview : true,
+			rownumbers:true,
 			multiselect : true,
 			multiboxonly : true,
 			colModel : [ {
@@ -253,7 +255,8 @@ var handle = {
 				data : r,
 				width : 800,
 				height :300,
-				max :true,resize:true,
+				max :true,
+				resize:true,
 				min :false,
 				cache :false,
 				lock :true
@@ -275,7 +278,7 @@ var handle = {
 						parent.Public.tips({
 							type : 1,
 							content : "删除线索失败！" + t.msg
-						})
+						});
 				})
 			})
 		},
