@@ -1,37 +1,14 @@
 var url=rootPath+"/plan/plant",gridQryUrl=url+"/dataGrid.json",custParame=SYSTEM.custParame,typeList=custParame.typeList;
-var order_type=["种植计划","采购退货单","销售订单","销售退货单","报价"],audit_status=["未提交","待审核","通过","拒绝"],order_name=order_type[type],
-audit_hidden=(type<=1||((type==2&&SYSTEM.company.config.p_sale_audit=="false")||(type==3&&SYSTEM.company.config.p_saletui_audit=="false")));
+var frame_name ="种植计划";
 var model = avalon.define({$id:'view',
-	query:{keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate,status:"",ordertype:type,is_deleted:0,qryType:5,pay_status:""},
+	query:{keyword:"",start_date:SYSTEM.beginDate,end_date:SYSTEM.endDate},
 	parameList:typeList,
 	fastQryText:"快速查询",
 	fastQry:[
 		       {text:"我创建的",sl:false},
 		       {text:"我负责的",sl:false},
 		       {text:"下属创建的",sl:false},
-		       {text:"下属负责的",sl:false},
-		       {text:"回收站",sl:false},
-		       {text:"",sl:true},
-		       ],
-	qry:function(type){
-		model.query.qryType=type;
-		if(type==4){
-			model.query.is_deleted=1;
-			model.query.qryType=-1;//查看自己的回收站信息
-			model.fastQryText="回收站";
-			model.query.pay_status="";
-		}else if(type>5){//支付情况
-			model.fastQryText=model.fastQry[type].text;
-			model.query.pay_status=type-6;
-			model.query.qryType=5;
-			model.query.is_deleted=0;
-		}else{
-			model.fastQryText=model.fastQry[type].text;
-			model.query.is_deleted=0;
-			model.query.pay_status="";
-		}
-		model.reloadData();
-	},
+		    ],
 	init:function() {
 		$(".ui-datepicker-input").datepicker();
 		this.loadGrid();
@@ -65,7 +42,8 @@ var model = avalon.define({$id:'view',
 			colModel:[ {
 				name:"operating",
 				label:"操作",
-				fixed:true,width:150,
+				fixed:true,
+				width:150,
 				formatter:t,
 				align:"center",
 				title:false
@@ -73,77 +51,90 @@ var model = avalon.define({$id:'view',
 				name:"name",
 				label:"名称",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"variety",
 				label:"品种",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"area",
 				label:"面积",
-				align:"center",sortable:true,
+				align:"center",
+				sortable:true,
 				width:100,
 				title:false
 			}, {
 				name:"plant_region",
 				label:"种植区域",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"spawning_time",
 				label:"育种时间",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"seeding_time",
 				label:"播种时间",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"growing_time",
 				label:"生长时间",
 				align:"center",
-				width:100,sortable:true,
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"ripe_time",
 				label:"成熟时间",
-				align:"center",sortable:true,
-				width:100,sortable:true,
+				align:"center",
+				width:100,
+				sortable:true,
 				title:false
 			}, {
 				name:"harvest_time",
-				label:"采摘时间",sortable:true,
+				label:"采摘时间",
+				sortable:true,
 				align:"center",
 				width:100,
 				title:false
 			}, {
 				name:"fertilizer",
-				label:"肥料投入",sortable:true,
+				label:"肥料投入",
+				sortable:true,
 				align:"center",
 				width:100,
 				title:false
 			}, {
 				name:"pestisaid",
-				label:"农药投入",sortable:true,
+				label:"农药投入",
+				sortable:true,
 				align:"center",
 				width:100,
 				title:false
 			}, {
 				name:"head_name",
-				label:"管理人",sortable:true,
+				label:"管理人",
+				sortable:true,
 				align:"center",
 				width:100,
 				title:false
 			} , {
 				name:"mobile",
-				label:"电话",sortable:true,
+				label:"电话",
+				sortable:true,
 				align:"center",
 				width:100,
 				title:false
@@ -183,7 +174,8 @@ var model = avalon.define({$id:'view',
 	reloadData:function() {
 		$("#grid").jqGrid("setGridParam", {
 			url:gridQryUrl,
-			datatype:"json",mtype:'POST',
+			datatype:"json",
+			mtype:'POST',
 			postData:model.query.$model
 		}).trigger("reloadGrid");
 	},
@@ -204,16 +196,7 @@ var model = avalon.define({$id:'view',
 			}
 		});
 		
-		$(".grid-wrap").on("click", ".fa-trash-o", function(t) {
-			t.preventDefault();
-			if (Business.verifyRight("BU_DELETE")) {
-				var e = $(this).parent().data("id");
-				if(model.query.qryType==4)
-					model.del(e);
-				else
-					model.trash(e);
-			}
-		});
+		
 		$(".grid-wrap").on("click", ".del", function(t) {
 			t.preventDefault();
 			if (Business.verifyRight("BU_DELETE")) {
@@ -232,22 +215,13 @@ var model = avalon.define({$id:'view',
 			e.preventDefault();
 			if (Business.verifyRight("BU_DELETE")) {
 				var t = $("#grid").jqGrid("getGridParam", "selarrrow");
-				t.length ? 
-						((model.query.qryType==4)?model.del(t.join()):model.trash(t.join()))
-						:parent.Public.tips({
-					type:2,
-					content:"请选择需要删除的项"
-				})
+				t.length ? model.del(t.join()):parent.Public.tips({
+								type:2,
+								content:"请选择需要删除的项"
+							});
 			}
 		});
-		$("#btn-batchReply").click(function(e) {
-			e.preventDefault();
-				var t = $("#grid").jqGrid("getGridParam", "selarrrow");
-				if(t.length){
-						model.reply(t.join());
-				}else
-					parent.Public.tips({type:2,content:"请选择需要恢复的"+order_name});
-		});
+		
 		$(window).resize(function() {
 			Public.resizeGrid()
 		})
@@ -273,11 +247,11 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:2,content:t.msg});
 					model.reloadData();
 				} else
-					parent.Public.tips({type:1,content:"删除"+order_name+"失败！" + t.msg});
+					parent.Public.tips({type:1,content:"删除"+frame_name+"失败！" + t.msg});
 			});
 	},
 	del:function(id) {
-		$.dialog.confirm("删除的"+order_type[type]+"将不能恢复，请确认是否删除？", function() {
+		$.dialog.confirm("删除的"+frame_name+"将不能恢复，请确认是否删除？", function() {
 			Public.ajaxPost(url+"/del.json", {
 				id:id
 			}, function(t) {
@@ -285,7 +259,7 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:2,content:t.msg});
 					model.reloadData();
 				} else{
-					parent.Public.tips({type:1,content:"删除"+order_type[type]+"失败！请检查是否被引用！" + t.msg});
+					parent.Public.tips({type:1,content:"删除"+frame_name+"失败！请检查是否被引用！" + t.msg});
 				}
 			})
 		});

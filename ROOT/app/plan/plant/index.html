@@ -1,6 +1,5 @@
 <#include "../../inc/layout.html">
 <@layout title="种植计划" js="plan/plant/index.js">
-<script>var type=${type!0};</script>
 <div class="wrapper" ms-controller="view">
   <div class="mod-search cf">
     <div class="fl">
@@ -31,7 +30,6 @@
     <div class="fr">
     <a class="ui-btn ui-btn-sp mrb" id="add" title="新增"><i class="fa fa-plus"></i></a>
     <a class="ui-btn mrb"id="btn-batchDel"title="批量删除"><i class="fa red fa-trash-o"></i></a>
-    <a ms-visible="query.qryType==4"class="ui-btn mrb" id="btn-batchReply" title="批量恢复"><i class="fa fa-reply"></i>恢复</a>
     </div>
   </div>
   <div class="grid-wrap">
