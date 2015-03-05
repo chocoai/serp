@@ -156,13 +156,15 @@ var model = avalon.define({$id:'view',
 			sortname:"create_datetime",
 			sortorder:"desc",
 			pager:"#page",
-			rowNum:10,
-			rowList:[ 10,100, 200 ],
+			rowNum:50,
+			rowList:[ 50,100, 200 ],
 			viewrecords:true,
 			shrinkToFit:false,
 			forceFit:false,
 			jsonReader:{
 				root:"data.list",
+				total:"data.totalPage",
+				page:"data.pageNumber",
 				records:"data.totalRow",
 				repeatitems:false,
 				id:"id"
@@ -219,16 +221,7 @@ var model = avalon.define({$id:'view',
 					model.del(e);
 			}
 		});
-		$(".grid-wrap").on("click", ".fa-reply", function(t) {
-			t.preventDefault();
-				var e = $(this).parent().data("id");
-					model.reply(e);
-		});
-		$(".grid-wrap").on("click", ".submit", function(t) {
-			t.preventDefault();
-			var e = $(this).parent().data("id");
-			model.submit(e);
-		});
+		
 		$("#add").click(function(t) {
 			t.preventDefault();
 			if(Business.verifyRight("TF_ADD")){
@@ -270,18 +263,9 @@ var model = avalon.define({$id:'view',
 			})
 	},
 	view:function(id){
-		$.dialog({id:"dialog1",width:900,height :700,min:true,max:true,
+		$.dialog({id:"dialog1",width:800,height :280,min:true,max:true,
 			title:"查看"+order_type[type],button:[{name:"关闭"	} ],resize:true,lock:true,
 			content:"url:"+url+"/view.html",data:{id:id,type:type}});
-	},
-	reply:function(e) {
-			Public.ajaxPost(url + "/reply.json", {id:e}, function(t) {
-				if (t && 200 == t.status) {
-					parent.Public.tips({type:2,content:t.msg});
-					model.reloadData();
-				} else
-					parent.Public.tips({type:1,content:"恢复"+order_name+"失败！" + t.msg})
-			});
 	},
 	trash:function(e) {
 			Public.ajaxPost(url + "/trash", {id:e}, function(t) {
@@ -302,18 +286,6 @@ var model = avalon.define({$id:'view',
 					model.reloadData();
 				} else{
 					parent.Public.tips({type:1,content:"删除"+order_type[type]+"失败！请检查是否被引用！" + t.msg});
-				}
-			})
-		});
-	},
-	submit:function(id) {
-		$.dialog.confirm("提交"+order_type[type]+"后将不能修改，且生成应收应付单，请确认是否提交？", function() {
-			Public.ajaxPost(url+"/submit.json", {id:id}, function(t) {
-				if (t && 200 == t.status) {
-					parent.Public.tips({type:2,content:t.msg});
-					model.reloadData();
-				} else{
-					parent.Public.tips({type:1,content:"提交"+order_type[type]+"失败！" + t.msg});
 				}
 			})
 		});

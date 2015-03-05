@@ -67,6 +67,8 @@ var queryConditions = {}, url=rootPath+"/sso/position",gridQryUrl=url+"/dataGrid
 			jsonReader:{
 				root:"data.list",
 				records:"data.totalRow",
+				total:"data.totalPage",
+				page:"data.pageNumber",
 				repeatitems:false,
 				id:"id"
 			},

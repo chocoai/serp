@@ -179,6 +179,8 @@ var model = avalon.define({$id:'view',
 			jsonReader:{
 				root:"data.list",
 				records:"data.totalRow",
+				total:"data.totalPage",
+				page:"data.pageNumber",
 				repeatitems:false,
 				id:"id"
 			},

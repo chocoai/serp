@@ -9,6 +9,7 @@ import java.util.Map;
 import net.loyin.ctrl.base.AdminBaseController;
 import net.loyin.jfinal.anatation.PowerBind;
 import net.loyin.jfinal.anatation.RouteBind;
+import net.loyin.model.crm.Contacts;
 import net.loyin.model.plan.Plant;
 
 import org.apache.commons.lang3.StringUtils;
@@ -63,6 +64,15 @@ public class PlantCtrl extends AdminBaseController<Plant> {
 			log.error("保存产品异常", e);
 			this.rendJson(false,null, "保存数据异常！");
 		}
+	}
+	
+	public void qryOp() {
+		getId();
+		Plant m = Plant.dao.findById(id, this.getCompanyId());
+		if (m != null)
+			this.rendJson(true,null, "", m);
+		else
+			this.rendJson(false,null, "记录不存在！");
 	}
 	
 	@PowerBind(code={"A2_1_E","A3_1_E"},funcName="删除")

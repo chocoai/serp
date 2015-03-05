@@ -92,6 +92,8 @@ states=["<font color='red'>禁用</font>","<font color='green'>激活</font>"], 
 			jsonReader : {
 				root : "data.list",
 				records : "data.totalRow",
+				total:"data.totalPage",
+				page:"data.pageNumber",
 				repeatitems : false,
 				id : "id"
 			},

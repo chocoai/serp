@@ -114,6 +114,8 @@ var queryConditions = {},url=rootPath+"/sso/snCreater",gridQryUrl=url+"/list.jso
 			jsonReader : {
 				root : "data",
 				records : "data.totalRow",
+				total:"data.totalPage",
+				page:"data.pageNumber",
 				repeatitems : false,
 				id : "id"
 			},

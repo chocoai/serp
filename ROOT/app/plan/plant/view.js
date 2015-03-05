@@ -1,6 +1,6 @@
 var api = frameElement.api,oper = api.data.oper,id=api.data.id,$_form=$("#base_form"),url=rootPath+"/plan/plant";
 var model = avalon.define({$id:'view',
-	data:{name:"",variety:"",area:"",plant_region:"",spawning_time:"",seeding_time:"",growing_time:"",ripe_time:"",harvest_time:"",fertilizer:"",pestisaid:"",head_name:"",company_id:"",company_name:"",id:"",mobile:""},
+	data:{name:"",variety:"",area:"",plant_region:"",spawning_time:"",seeding_time:"",growing_time:"",ripe_time:"",harvest_time:"",fertilizer:"",pestisaid:"",username:"",company_id:"",company_name:"",id:"",mobile:""},
     tabActive:0,
     showTab:function(i,b){
     	model.tabActive=i;
