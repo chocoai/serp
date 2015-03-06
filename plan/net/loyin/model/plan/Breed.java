@@ -45,7 +45,7 @@ public class Breed extends Model<Breed> {
 		sql.append(" t left join ");
 		sql.append(Person.tableName);
 		sql.append(" p on p.id=t.head_id");
-		
+		sql.append(" where 1=1 ");
 		String keyword=(String)filter.get("keyword");
 		if(StringUtils.isNotEmpty(keyword)){
 			sql.append(" and (t.name like ? or t.variety like ? or t.breed_region like ? or p.realname like ?)");

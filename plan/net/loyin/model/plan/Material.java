@@ -49,8 +49,8 @@ public class Material extends Model<Material> {
 		sql.append(Customer.tableName);
 		sql.append(" c on t.buy_company_id = c.id left join ");
 		sql.append(Person.tableName);
-		sql.append(" p on p.id=c.head_id");
-		
+		sql.append(" p on p.id=t.head_id");
+		sql.append(" where 1=1 ");
 		String start_date=(String) filter.get("start_date");
 		if(StringUtils.isNotEmpty(start_date)){
 			sql.append(" and t.create_datetime >= ?");
