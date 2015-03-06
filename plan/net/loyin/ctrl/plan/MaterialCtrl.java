@@ -10,7 +10,6 @@ import net.loyin.ctrl.base.AdminBaseController;
 import net.loyin.jfinal.anatation.PowerBind;
 import net.loyin.jfinal.anatation.RouteBind;
 import net.loyin.model.plan.Material;
-import net.loyin.model.plan.Plant;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,7 +34,7 @@ public class MaterialCtrl extends AdminBaseController<Material> {
 		filter.put("user_id",userMap.get("uid"));
 		filter.put("position_id",userMap.get("position_id"));
 		this.sortField(filter);
-		this.rendJson(true, null, "",Plant.dao.pageGrid(this.getPageNo(),this.getPageSize(),filter));
+		this.rendJson(true, null, "",Material.dao.pageGrid(this.getPageNo(),this.getPageSize(),filter));
 	}
 	
 	@PowerBind(code="A1_1_E",funcName="编辑")

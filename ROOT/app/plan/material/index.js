@@ -92,7 +92,7 @@ var model = avalon.define({$id:'view',
 				sortable:true,
 				title:false
 			}, {
-				name:"company_name",
+				name:"buy_company_name",
 				label:"厂家",
 				align:"center",
 				width:100,
@@ -100,7 +100,7 @@ var model = avalon.define({$id:'view',
 				title:false
 			},{
 				name:"head_name",
-				label:"厂家负责人",
+				label:"负责人",
 				sortable:true,
 				align:"center",
 				width:100,
@@ -202,9 +202,9 @@ var model = avalon.define({$id:'view',
 	},
 	operate:function(e, t) {
 			if ("add" == e)
-				var i = "新增"+order_type[type], r = {oper:e};
+				var i = "新增"+frame_name, r = {oper:e};
 			else
-				var i = "修改"+order_type[type], r = {oper:e,id:t};
+				var i = "修改"+frame_name, r = {oper:e,id:t};
 			
 			$.dialog({title:i,content:"url:"+url+"/edit.html",
 				data:r,width:900,height:280,max:true,resize:true,min :false,cache :false,lock :true
@@ -212,7 +212,7 @@ var model = avalon.define({$id:'view',
 	},
 	view:function(id){
 		$.dialog({id:"dialog1",width:800,height :280,min:true,max:true,
-			title:"查看"+order_type[type],button:[{name:"关闭"	} ],resize:true,lock:true,
+			title:"查看"+frame_name,button:[{name:"关闭"	} ],resize:true,lock:true,
 			content:"url:"+url+"/view.html",data:{id:id,type:type}});
 	},
 	trash:function(e) {

@@ -68,7 +68,7 @@ public class Breed extends Model<Breed> {
 			sql.append(" ");
 			sql.append(sort);
 		}
-		return this.paginate(pageNo, pageSize, "select t.*,p.realname as username,p.mobile as mobile ",sql.toString(),parame.toArray());
+		return this.paginate(pageNo, pageSize, "select t.*,p.realname as head_name,p.mobile as mobile ",sql.toString(),parame.toArray());
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class Breed extends Model<Breed> {
 	 * @return				一条记录
 	 */
 	public Breed findById(String id,String company_id){
-		StringBuffer sql=new StringBuffer("select t.*,p.realname as username,p.mobile as mobile from ");
+		StringBuffer sql=new StringBuffer("select t.*,p.realname as head_name,p.mobile as mobile from ");
 		sql.append(tableName);
 		sql.append(" t left join ");
 		sql.append(Person.tableName);

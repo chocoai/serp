@@ -84,7 +84,7 @@ public class Material extends Model<Material> {
 			sql.append(" ");
 			sql.append(sort);
 		}
-		return this.paginate(pageNo, pageSize, "select t.*,c.name as factory_name,p.realname as username,p.mobile as usermobile ",sql.toString(),parame.toArray());
+		return this.paginate(pageNo, pageSize, "select t.*,c.name as buy_company_name,p.realname as head_name,p.mobile as usermobile ",sql.toString(),parame.toArray());
 	}
 	
 	/**

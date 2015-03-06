@@ -1,5 +1,5 @@
 <#include "../../inc/layout.html">
-<@layout title="种植管理" js="plan/plant/edit.js">
+<@layout title="种植管理" js="plan/material/edit.js">
 <style>
 body{background:#fff;display:block;}
 </style>
@@ -10,45 +10,45 @@ body{background:#fff;display:block;}
     			<li class="row-item">
     				<div class="label-wrap"><label>生产资料名称</label></div>
     				<div class="ctn-wrap">
-          			<input type="text" id="p_name" class="ui-input"  ms-duplex="data.name" data-rule="required;" maxlength="20" placeholder="请输入作物名称">
+          			<input type="text" id="p_name" class="ui-input"  ms-duplex="data.name" data-rule="required;" maxlength="20" placeholder="请输入生产资料名称">
           			</div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>类型</label></div>
     				<div class="ctn-wrap">
-    				<input type="text" class="ui-input" ms-duplex="data.variety"id="p_name" data-rule="required;"  maxlength="20" placeholder="请输入作物类别">
+    				<input type="text" class="ui-input" ms-duplex="data.variety"id="p_name" data-rule="required;"  maxlength="20" placeholder="请输入生产资料类别">
     				</div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>数量</label></div>
     				<div class="ctn-wrap">
-    				<input type="text" class="ui-input" ms-duplex="data.number"id="p_area" data-rule="required;"  maxlength="20" placeholder="请输入作物种植面积">
+    				<input type="text" class="ui-input" ms-duplex="data.number"id="p_area" data-rule="required;"  maxlength="20" placeholder="请输入生产资料数量">
     				</div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>单位</label></div>
     				<div class="ctn-wrap">
-    				<input type="text" class="ui-input" ms-duplex="data.unit"id="p_region" maxlength="20" placeholder="请输入作物种植区域">
+    				<input type="text" class="ui-input" ms-duplex="data.unit"id="p_region" maxlength="20" placeholder="请输入生产资料单位">
     				</div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>用途</label></div>
-    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.use"id="p_spawn" maxlength="20" placeholder="请输入作物播种期"></div>
+    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.use"id="p_spawn" maxlength="20" placeholder="请输入生产资料用途"></div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>预计投入</label></div>
-    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.input"id="p_seed" maxlength="20" placeholder="请输入作物育苗期"></div>
+    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.input"id="p_seed" maxlength="20" placeholder="请输入预计投入"></div>
     			</li>
     			<li class="row-item">
     				<div class="label-wrap"><label>采购时间</label></div>
-    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.buy_time"id="c_telephone" maxlength="20" placeholder="请输入作物成长期"></div>
+    				<div class="ctn-wrap"><input type="text" class="ui-input" ms-duplex="data.buy_time"id="c_telephone" maxlength="20" placeholder="请输入采购时间"></div>
     			</li>
     			
     			<li class="row-item">
     				<div class="label-wrap"><label>采购厂商</label></div>
     				<div class="ctn-wrap">
-    				<select ms-duplex="data.head_id" class="ui-input" style="width:220px;" data-rule="required" data-msg="请选择负责人">
-    					<option ms-repeat="userList" ms-value="el.id">{{el.realname}}({{el.department_name}}-{{el.position_name}})</option>
+    				<select ms-duplex="data.buy_company_id" class="ui-input" style="width:220px;" data-rule="required" data-msg="请选择采购厂商">
+    					<option ms-repeat="factoryList" ms-value="el.id">{{el.name}}</option>
     				</select>
     				</div>
     			</li>

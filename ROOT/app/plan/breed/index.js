@@ -202,9 +202,9 @@ var model = avalon.define({$id:'view',
 	},
 	operate:function(e, t) {
 			if ("add" == e)
-				var i = "新增"+order_type[type], r = {oper:e};
+				var i = "新增"+frame_name, r = {oper:e};
 			else
-				var i = "修改"+order_type[type], r = {oper:e,id:t};
+				var i = "修改"+frame_name, r = {oper:e,id:t};
 			
 			$.dialog({title:i,content:"url:"+url+"/edit.html",
 				data:r,width:900,height:280,max:true,resize:true,min :false,cache :false,lock :true
@@ -212,18 +212,10 @@ var model = avalon.define({$id:'view',
 	},
 	view:function(id){
 		$.dialog({id:"dialog1",width:800,height :280,min:true,max:true,
-			title:"查看"+order_type[type],button:[{name:"关闭"	} ],resize:true,lock:true,
+			title:"查看"+frame_name,button:[{name:"关闭"	} ],resize:true,lock:true,
 			content:"url:"+url+"/view.html",data:{id:id,type:type}});
 	},
-	trash:function(e) {
-			Public.ajaxPost(url + "/trash", {id:e}, function(t) {
-				if (t && 200 == t.status) {
-					parent.Public.tips({type:2,content:t.msg});
-					model.reloadData();
-				} else
-					parent.Public.tips({type:1,content:"删除"+frame_name+"失败！" + t.msg});
-			});
-	},
+	
 	del:function(id) {
 		$.dialog.confirm("删除的"+frame_name+"将不能恢复，请确认是否删除？", function() {
 			Public.ajaxPost(url+"/del.json", {

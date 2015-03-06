@@ -1,18 +1,25 @@
 var api = frameElement.api,oper = api.data.oper,id=api.data.id,$_form=$("#base_form");
 
-var custParame=SYSTEM.custParame,typeList=custParame.typeList,url=rootPath+"/plan/plant";
+var custParame=SYSTEM.custParame,typeList=custParame.typeList,url=rootPath+"/plan/material";
 var model = avalon.define({$id:'view',
 	data:{name:"",variety:"",number:"",unit:"",use:"",input:"",buy_time:"",buy_company_id:"",head_id:"",id:""},
     parameList:typeList,
     userList:[],
+    factoryList:[],
     custComboV:false,
     init:function(){},
+    
     choosEmployee:function(e){ ///选择负责人
     	model.data.head_id=e.id;
     	model.custComboV=false;
     },
     setCompany:function(e){
     	model.data.company_id=e.id;
+    },
+    qryFactory:function(v){
+    	Public.ajaxPost(rootPath+"/crm/customer/dataGrid.json",{keyword:v,start_date:"",end_date:"",type:0,qryType:-3,status:0,is_deleted:0,uid:""},function(json){
+    		model.factoryList=json.data.list;
+    	});
     },
     qryHead:function(v){
     	Public.ajaxPost(rootPath+"/sso/user/dataGrid.json",{keyword:v,status:1,_sortField:"realname",rows:9999,_sort:"asc",rows:9999},function(json){
@@ -24,6 +31,7 @@ var model = avalon.define({$id:'view',
 var THISPAGE = {
 	init : function() {
 		model.qryHead();
+		model.qryFactory();
 		this.initDom();
 		this.initBtn();
 	},

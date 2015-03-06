@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author xiangning
  * 种植控制器
  */
-@RouteBind(path="bread",sys="计划",model="养殖计划计划")
+@RouteBind(path="breed",sys="计划",model="养殖计划计划")
 public class BreedCtrl extends AdminBaseController<Breed> {
 	public BreedCtrl(){
 		this.modelClass = Breed.class;

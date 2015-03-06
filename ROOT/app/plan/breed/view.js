@@ -1,6 +1,6 @@
 var api = frameElement.api,oper = api.data.oper,id=api.data.id,$_form=$("#base_form"),url=rootPath+"/plan/breed";
 var model = avalon.define({$id:'view',
-	data:{name:"",variety:"",number:0,breed_region:"",feed:"",anti_epidemic:"",ripe_number:0,ripe_time:"",username:"",mobile:"",id:""},
+	data:{name:"",variety:"",number:0,breed_region:"",feed:"",anti_epidemic:"",ripe_number:0,ripe_time:"",head_name:"",mobile:"",id:""},
     tabActive:0,
     showTab:function(i,b){
     	model.tabActive=i;

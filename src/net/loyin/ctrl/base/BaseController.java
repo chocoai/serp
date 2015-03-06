@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.loyin.jfinal.model.IdGenerater;
-import net.loyin.kit.I18N;
 import net.loyin.model.sso.User;
 import net.loyin.util.PropertiesContent;
 import net.loyin.util.safe.CipherUtil;
