@@ -204,7 +204,7 @@ var handle = {
 					} else
 						parent.Public.tips({type:1,content:"删除参数失败！" + t.msg})
 				})
-			})
+			},null,null,rootPath)
 		},
 		callback:function(e, t, i){
 		}

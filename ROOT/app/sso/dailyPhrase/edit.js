@@ -80,7 +80,7 @@ function postData(){
 				addNew=false;
 				base_form.reset();
 			}else{
-				model.data.id=t.data;
+				model.data.id=t.data.id;
 			}
 			parent.THISPAGE.reloadData(null);
 		} else

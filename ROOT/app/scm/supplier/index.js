@@ -267,7 +267,7 @@ var handle = {
 						content:"删除供应商失败！" + t.msg
 					})
 			})
-		})
+		},null,null,rootPath)
 	},
 	reply:function(e) {
 		$.dialog.confirm("请确认是否恢复？", function() {

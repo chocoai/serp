@@ -237,7 +237,7 @@ var handle = {
 					} else
 						parent.Public.tips({type:1,content:"删除"+tit+"失败！" + t.msg})
 				})
-			})
+			},null,null,rootPath)
 		},
 		callback:function(e, t, i){
 		}

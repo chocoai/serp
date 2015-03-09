@@ -275,7 +275,7 @@ var handle = {
 							content : "删除用户失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath);
 		},
 		disable : function(id) {
 			$.dialog.confirm("确定要（禁用或激活）用户？", function() {

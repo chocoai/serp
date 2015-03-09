@@ -265,7 +265,7 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:1,content:"删除调拨单失败！请检查是否被引用！" + t.msg});
 				}
 			})
-		});
+		},null,null,rootPath);
 	},
 	submit:function(id) {
 		$.dialog.confirm("提交后数据将不可修改，确定要提交吗？", function() {	

@@ -196,7 +196,7 @@ var handle = {
 					} else
 						parent.Public.tips({type : 1,content : "删除商品价目表失败！" + t.msg})
 				})
-			})
+			},null,null,rootPath);
 		}
 	}
 THISPAGE.init();

@@ -326,7 +326,7 @@ var handle = {
 						content:"删除客户关怀失败！" + t.msg
 					})
 			})
-		})
+		},null,null,rootPath)
 	}
 }
 THISPAGE.init();

@@ -217,7 +217,10 @@ lhgdialog.fn = lhgdialog.prototype =
 			config.max = false;
 			
 			DOM.icon[0].style.display = '';
-			DOM.icon[0].innerHTML = '<img src="/assets/css/base/dialog/icons/' + config.icon + '" class="ui_icon_bg"/>';
+			var src = '/assets/css/base/dialog/icons/' + config.icon;
+			if(config.base && config.base !== null && config.base !== undefined && config.base !== '')
+				src = config.base+src;
+			DOM.icon[0].innerHTML = '<img src="' + src + '" class="ui_icon_bg"/>';
 		}
 		else
 		    DOM.icon[0].style.display = 'none';
@@ -1313,7 +1316,8 @@ lhgdialog.setting =
 	drag: true, 				// 是否允许用户拖动位置
 	cache: true,                // 是否缓存窗口内容页
 	data: null,                 // 传递各种数据
-	extendDrag: false           // 增加lhgdialog拖拽体验
+	extendDrag: false,          // 增加lhgdialog拖拽体验
+	base:""                     // 基本路径
 };
 
 /*!
@@ -1601,7 +1605,7 @@ lhgdialog.alert = function( content, callback, parent )
  * @param	{Function}	确定按钮回调函数
  * @param	{Function}	取消按钮回调函数
  */
-lhgdialog.confirm = function( content, yes, no, parent )
+lhgdialog.confirm = function( content, yes, no, parent,base )
 {
 	return lhgdialog({
 		title: '系统提示',
@@ -1614,6 +1618,7 @@ lhgdialog.confirm = function( content, yes, no, parent )
 		content: content,
 		resize: false,
 		parent: parent || null,
+		base:base||"",
 		ok: function(here){
 			return yes.call(this, here);
 		},

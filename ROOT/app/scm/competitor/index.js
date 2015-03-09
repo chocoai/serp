@@ -236,7 +236,7 @@ var handle = {
 							type : 1,
 							content : "删除竞争对手失败！" + t.msg
 						})
-				})
+				},null,null,rootPath)
 			})
 		},
 		callback : function(e, t, i) {

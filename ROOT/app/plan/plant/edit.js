@@ -37,18 +37,6 @@ var THISPAGE = {
 				}
 			});
 		}
-		/**客户*/
-		var r=$("#headCombo");
-		/*var i=Public.comBox(r,{url:rootPath+'/sso/customer/combo.json',postData:{type:1},callback:{
-			beforeClick:function(e, t) {
-				if(t.type==10){
-					r.val(t.name);model.data.head_id=t.id;i.hide();
-				}else{
-					r.val("");model.data.head_id="";
-				}
-			}}
-		});*/
-		/**客户combo END*/
 		THISPAGE.initEvent();
 	},
 	initBtn:function(){

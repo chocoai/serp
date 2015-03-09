@@ -237,18 +237,18 @@ var model = avalon.define({$id:'view',
 			content:"url:"+url+"/view.html",data:{id:id,type:type}});
 	},
 	del:function(id) {
-		$.dialog.confirm("删除的"+frame_name+"将不能恢复，请确认是否删除？", function() {
-			Public.ajaxPost(url+"/del.json", {
-				id:id
-			}, function(t) {
-				if (t && 200 == t.status) {
-					parent.Public.tips({type:2,content:t.msg});
-					model.reloadData();
-				} else{
-					parent.Public.tips({type:1,content:"删除"+frame_name+"失败！请检查是否被引用！" + t.msg});
-				}
-			})
-		});
+		$.dialog.confirm("删除的"+frame_name+"将不能恢复，请确认是否删除？", 
+				function() {Public.ajaxPost(url+"/del.json", {
+						id:id
+					}, function(t) {
+						if (t && 200 == t.status) {
+							parent.Public.tips({type:2,content:t.msg});
+							model.reloadData();
+						} else{
+							parent.Public.tips({type:1,content:"删除"+frame_name+"失败！请检查是否被引用！" + t.msg});
+						}
+				})
+			},null,null,rootPath);
 	}
 });
 model.init();

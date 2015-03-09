@@ -344,7 +344,7 @@ var handle = {
 						content:"删除客户联系记录失败！" + t.msg
 					})
 			})
-		})
+		},null,null,rootPath)
 	}
 }
 THISPAGE.init();

@@ -133,7 +133,7 @@ var handle = {
 					} else
 						parent.Public.tips({type:1,content:"删除仓库失败！" + t.msg});
 				})
-			})
+			},null,null,rootPath)
 		}
 	}
 THISPAGE.init();

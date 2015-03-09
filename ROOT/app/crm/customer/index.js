@@ -410,7 +410,7 @@ var handle = {
 						content:"删除客户失败！" + t.msg
 					})
 			})
-		})
+		},null,null,rootPath)
 	},
 	toPool:function(e) {
 		$.dialog.confirm("请确认是否放入客户池？", function() {

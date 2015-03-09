@@ -243,7 +243,7 @@ var handle = {
 							content : "删除营销活动失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		}
 	}
 THISPAGE.init();

@@ -343,7 +343,7 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:1,content:"删除"+order_type[type]+"失败！请检查是否被引用！" + t.msg});
 				}
 			})
-		});
+		},null,null,rootPath);
 	},
 	submit:function(id) {
 		$.dialog.confirm("提交"+order_type[type]+"后将不能修改，且生成应收应付单，请确认是否提交？", function() {

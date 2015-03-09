@@ -236,7 +236,7 @@ var model = avalon.define({$id:'view',
 					parent.Public.tips({type:1,content:"删除"+frame_name+"失败！请检查是否被引用！" + t.msg});
 				}
 			})
-		});
+		},null,null,rootPath);
 	}
 });
 model.init();

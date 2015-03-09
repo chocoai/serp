@@ -121,7 +121,7 @@ function postData(){
 			parent.parent.Public.tips({
 				content:e + "成功！"
 			});
-			$("#id").val(t.data);
+			$("#id").val(t.data.id);
 			parent.THISPAGE.reloadData(null);
 			if(addNew)
 				THISPAGE.reset();

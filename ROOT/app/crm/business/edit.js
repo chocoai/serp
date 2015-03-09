@@ -168,7 +168,7 @@ function postData(){
 			if(addNew){
 				model.init();
 			}else{
-				model.data.id=(t.data);
+				model.data.id=(t.data.id);
 			}
 			parent.model.reloadData(null);
 		} else

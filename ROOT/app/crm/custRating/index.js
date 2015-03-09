@@ -186,7 +186,7 @@ var handle = {
 							content : "删除失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		}
 	}
 THISPAGE.init();

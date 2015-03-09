@@ -1,5 +1,8 @@
 package net.loyin.ctrl.sso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.loyin.ctrl.base.AdminBaseController;
 import net.loyin.jfinal.anatation.PowerBind;
 import net.loyin.jfinal.anatation.RouteBind;
@@ -43,7 +46,9 @@ public class SnCreaterCtrl extends AdminBaseController<SnCreater> {
 			} else {
 				po.update();
 			}
-			this.rendJson(true,null, "操作成功！",id);
+			Map<String,String> d=new HashMap<String,String>();
+			d.put("id",id);
+			this.rendJson(true,null, "操作成功！",d);
 		} catch (Exception e) {
 			log.error("保存产品异常", e);
 			this.rendJson(false,null, "保存数据异常！");

@@ -280,7 +280,7 @@ var handle = {
 							content : "删除线索失败！" + t.msg
 						});
 				})
-			})
+			},null,null,rootPath)
 		},
 		exchange: function(id) {
 			$.dialog.confirm("确定要将此线索转换成商机吗？", function() {

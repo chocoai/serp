@@ -304,7 +304,7 @@ var handle = {
 						content:"删除联系人失败！" + t.msg
 					})
 			})
-		})
+		},null,null,rootPath)
 	}
 }
 THISPAGE.init();

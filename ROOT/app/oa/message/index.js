@@ -256,7 +256,7 @@ var handle = {
 							content : "删除消息失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		},
 		callback : function(e, t, i) {
 			var r = $("#grid").data("gridData");

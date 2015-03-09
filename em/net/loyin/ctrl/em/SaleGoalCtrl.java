@@ -55,7 +55,9 @@ public class SaleGoalCtrl extends AdminBaseController<SaleGoal> {
 			}else{
 				po.update();
 			}
-			this.rendJson(true, null, "保存目标成功！",id);
+			Map<String,String> d=new HashMap<String,String>();
+			d.put("id",id);
+			this.rendJson(true,null, "保存销售目标成功！",d);
 		}catch(Exception e){
 			log.error(e);
 			this.rendJson(false, null,"保存销售目标异常！"+e.getMessage());

@@ -84,7 +84,7 @@ public class Material extends Model<Material> {
 			sql.append(" ");
 			sql.append(sort);
 		}
-		return this.paginate(pageNo, pageSize, "select t.*,c.name as buy_company_name,p.realname as head_name,p.mobile as usermobile ",sql.toString(),parame.toArray());
+		return this.paginate(pageNo, pageSize, "select t.*,c.name as buy_company_name,p.realname as head_name,p.mobile as mobile ",sql.toString(),parame.toArray());
 	}
 	
 	/**
@@ -114,13 +114,13 @@ public class Material extends Model<Material> {
 	 * @return				一条记录
 	 */
 	public Material findById(String id,String company_id){
-		StringBuffer sql=new StringBuffer("select t.*,c.name as factory_name,p.realname as username,p.mobile as usermobile  ");
+		StringBuffer sql=new StringBuffer("select t.*,c.name as factory_name,p.realname as username,p.mobile as mobile from ");
 		sql.append(tableName);
 		sql.append(" t left join ");
 		sql.append(Customer.tableName);
-		sql.append(" c on t.buy_company_id=c.id left join");
+		sql.append(" c on t.buy_company_id=c.id left join ");
 		sql.append(Person.tableName);
-		sql.append(" p on c.head_id=p.id where t.id=? and t.company_id=? ");
+		sql.append(" p on t.head_id=p.id where t.id=? and t.company_id=? ");
 		return dao.findFirst(sql.toString(),id,company_id);
 	}
 

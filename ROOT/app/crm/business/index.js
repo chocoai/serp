@@ -277,7 +277,7 @@ var model = avalon.define({$id:'view',
 							content : "删除商机失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		},
 		callback : function(e, t, i) {
 			var r = $("#grid").data("gridData");

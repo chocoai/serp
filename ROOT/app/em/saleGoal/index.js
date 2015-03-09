@@ -248,7 +248,7 @@ var handle = {
 							content : "删除销售目标失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		}
 	}
 THISPAGE.init();

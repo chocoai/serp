@@ -241,7 +241,7 @@ var handle = {
 							content : "删除商品失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		},
 		disable : function(id) {
 			$.dialog.confirm("确定要（禁用或激活）商品？", function() {

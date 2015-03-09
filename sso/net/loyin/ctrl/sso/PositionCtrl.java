@@ -1,7 +1,9 @@
 package net.loyin.ctrl.sso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.loyin.ctrl.base.AdminBaseController;
 import net.loyin.jfinal.anatation.PowerBind;
@@ -90,7 +92,9 @@ public class PositionCtrl extends AdminBaseController<Position> {
 			} else {
 				po.update();
 			}
-			this.rendJson(true,null, "操作成功！",id);
+			Map<String,String> d=new HashMap<String,String>();
+			d.put("id",id);
+			this.rendJson(true,null, "操作成功！",d);
 		} catch (Exception e) {
 			log.error("保存用户异常", e);
 			this.rendJson(false,null, "保存数据异常！");

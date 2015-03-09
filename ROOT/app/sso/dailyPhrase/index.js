@@ -184,7 +184,7 @@ var handle = {
 							content : "删除失败！" + t.msg
 						})
 				})
-			})
+			},null,null,rootPath)
 		},
 		callback : function(e, t, i) {
 			var r = $("#grid").data("gridData");

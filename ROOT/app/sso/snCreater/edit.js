@@ -91,7 +91,7 @@ function postData(){
 			if(addNew){
 				model.init();
 			}else{
-				model.data.id=(t.data);
+				model.data.id=(t.data.id);
 			}
 			parent.THISPAGE.reloadData(null);
 		} else

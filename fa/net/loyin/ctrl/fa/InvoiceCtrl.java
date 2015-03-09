@@ -67,7 +67,9 @@ public class InvoiceCtrl extends AdminBaseController<Invoice> {
 			} else {
 				po.update();
 			}
-			this.rendJson(true,null, "操作成功！",id);
+			Map<String,String> d=new HashMap<String,String>();
+			d.put("id",id);
+			this.rendJson(true,null, "操作成功！",d);
 		} catch (Exception e) {
 			log.error("保存票据异常", e);
 			this.rendJson(false,null, "保存数据异常！");

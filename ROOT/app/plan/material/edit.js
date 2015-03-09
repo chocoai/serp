@@ -91,6 +91,7 @@ function postData(){
 				content : e + "成功！"
 			});
 			model.data.id=json.data.id;
+			alert(json.data.id);
 			parent.model.reloadData(null);
 		} else
 			parent.parent.Public.tips({

@@ -101,7 +101,7 @@ function postData(){
 			parent.parent.Public.tips({
 				content : e + "成功！"
 			});
-			model.data.id=(t.data);
+			model.data.id=(t.data.id);
 			try{
 			parent.THISPAGE.reloadData(null);
 			}catch(e){}
