@@ -135,7 +135,7 @@ color: #d2160b; border-radius: 14px; font-weight: normal; }
 #main-hd .service-list-on .list{display: block;}
 
 #main-hd .user-menu { float: right; margin:3px 0 0 0; position: absolute;right:10px;}
-#main-hd .user-menu li { float: left; display: inline; position: relative; font-family:'\5b8b\4f53'; font-weight:normal; }
+#main-hd .user-menu li { float: left; display:inline; position:relative; font-family:'\5b8b\4f53'; font-weight:normal; }
 #main-hd .user-menu li.space{ margin:0 10px; color:#CCC; vertical-align:middle; }
 #SysNews span{ background:#f74c23; color:#FFF; border-radius:6px; position:relative; padding:0 8px; line-height:1; margin:0 0 0 2px; font-size:12px;}
 .ui-icons { float:left; width: 16px; height: 16px; background: url('img/page_spr_icons.png') no-repeat; margin:2px 4px 0 0 }
